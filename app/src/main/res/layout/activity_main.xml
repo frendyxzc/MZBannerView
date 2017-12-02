@@ -27,6 +27,8 @@
        app:indicatorAlign="center"
        app:indicatorPaddingLeft="10dp"
        app:indicatorPaddingBottom="50dp"
+       app:banner_marginLeft="10dp"
+       app:banner_marginRight="10dp"
        />
 
    <TextView
