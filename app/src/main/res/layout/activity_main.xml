@@ -29,6 +29,7 @@
        app:indicatorPaddingBottom="50dp"
        app:banner_marginLeft="10dp"
        app:banner_marginRight="10dp"
+       app:time_interval="5000"
        />
 
    <TextView

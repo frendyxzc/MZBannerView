@@ -3,6 +3,7 @@
     <declare-styleable name="MZBannerView">
         <attr name="open_mz_mode" format="boolean"/>
         <attr name="canLoop" format="boolean"/>
+        <attr name="time_interval" format="integer"/>
         <attr name="banner_marginLeft" format="dimension"/>
         <attr name="banner_marginRight" format="dimension"/>
         <attr name="indicatorPaddingLeft" format="dimension"/>

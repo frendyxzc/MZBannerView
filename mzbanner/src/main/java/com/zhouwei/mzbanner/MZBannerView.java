@@ -111,6 +111,7 @@ public class MZBannerView<T> extends RelativeLayout {
         mIndicatorPaddingRight = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingRight,0);
         mIndicatorPaddingTop = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingTop,0);
         mIndicatorPaddingBottom = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingBottom,0);
+        mDelayedTime = typedArray.getInteger(R.styleable.MZBannerView_time_interval, 3000);
     }
 
 
