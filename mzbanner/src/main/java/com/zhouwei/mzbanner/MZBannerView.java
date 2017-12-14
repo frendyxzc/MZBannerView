@@ -47,7 +47,7 @@ public class MZBannerView<T> extends RelativeLayout {
     private boolean mIsAutoPlay = true;// 是否自动播放
     private int mCurrentItem = 0;//当前位置
     private Handler mHandler = new Handler();
-    private int mDelayedTime = 3000;// Banner 切换时间间隔
+    private int mDelayedTime = 5000;// Banner 切换时间间隔
     private ViewPagerScroller mViewPagerScroller;//控制ViewPager滑动速度的Scroller
     private boolean mIsOpenMZEffect = true;// 开启魅族Banner效果
     private boolean mIsCanLoop = true;// 是否轮播图片
@@ -111,7 +111,7 @@ public class MZBannerView<T> extends RelativeLayout {
         mIndicatorPaddingRight = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingRight,0);
         mIndicatorPaddingTop = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingTop,0);
         mIndicatorPaddingBottom = typedArray.getDimensionPixelSize(R.styleable.MZBannerView_indicatorPaddingBottom,0);
-        mDelayedTime = typedArray.getInteger(R.styleable.MZBannerView_time_interval, 3000);
+        mDelayedTime = typedArray.getInteger(R.styleable.MZBannerView_time_interval, 5000);
     }
 
 
@@ -193,13 +193,13 @@ public class MZBannerView<T> extends RelativeLayout {
                 if(mCurrentItem == mAdapter.getCount() - 1){
                     mCurrentItem = 0;
                     mViewPager.setCurrentItem(mCurrentItem,false);
-                    mHandler.postDelayed(this,mDelayedTime);
+                    mHandler.postDelayed(this, mDelayedTime);
                 }else{
                     mViewPager.setCurrentItem(mCurrentItem);
-                    mHandler.postDelayed(this,mDelayedTime);
+                    mHandler.postDelayed(this, mDelayedTime);
                 }
             }else{
-                mHandler.postDelayed(this,mDelayedTime);
+                mHandler.postDelayed(this, mDelayedTime);
             }
         }
     };
@@ -289,9 +289,9 @@ public class MZBannerView<T> extends RelativeLayout {
         if(mAdapter== null){
             return;
         }
-        if(mIsCanLoop){
+        if(mIsCanLoop && !mIsAutoPlay){
             mIsAutoPlay = true;
-            mHandler.postDelayed(mLoopRunnable,mDelayedTime);
+            mHandler.postDelayed(mLoopRunnable, mDelayedTime);
         }
     }
 
