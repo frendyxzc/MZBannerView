@@ -495,7 +495,8 @@ public class MZBannerView<T> extends RelativeLayout {
         private ViewPager mViewPager;
         private boolean canLoop;
         private BannerPageClickListener mPageClickListener;
-        private final int mLooperCountFactor = 50;
+        private final int mLooperCountFactor = 500;
+        private ArrayList<View> mCacheViews = new ArrayList<>();
 
         public MZPagerAdapter(List<T> datas, MZHolderCreator MZHolderCreator,boolean canLoop) {
             if(mDatas == null){
@@ -615,9 +616,16 @@ public class MZBannerView<T> extends RelativeLayout {
                 throw new RuntimeException("can not return a null holder");
             }
             // create View
-            View view = holder.createView(container.getContext());
+            View view;
+            boolean isCache = false;
+            if(mCacheViews != null && mCacheViews.size() > position) {
+                view = mCacheViews.get(position);
+                isCache = true;
+            } else {
+                view = holder.createView(container.getContext());
+            }
 
-            if( mDatas!=null && mDatas.size()>0){
+            if(mDatas!=null && mDatas.size() > 0 && !isCache){
                 holder.onBind(container.getContext(),realPosition,mDatas.get(realPosition));
             }
 
