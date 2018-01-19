@@ -495,7 +495,7 @@ public class MZBannerView<T> extends RelativeLayout {
         private ViewPager mViewPager;
         private boolean canLoop;
         private BannerPageClickListener mPageClickListener;
-        private final int mLooperCountFactor = 500;
+        private final int mLooperCountFactor = 50;
 
         public MZPagerAdapter(List<T> datas, MZHolderCreator MZHolderCreator,boolean canLoop) {
             if(mDatas == null){
