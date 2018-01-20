@@ -561,13 +561,16 @@ public class MZBannerView<T> extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = getView(position,container);
+            if(view.getParent() == container) {
+                container.removeView(view);
+            }
             container.addView(view);
             return view;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
+//            container.removeView((View) object);
         }
 
         @Override
@@ -580,7 +583,6 @@ public class MZBannerView<T> extends RelativeLayout {
                     setCurrentItem(position);
                 }
             }
-
         }
 
         private void setCurrentItem(int position){
@@ -596,7 +598,7 @@ public class MZBannerView<T> extends RelativeLayout {
          * @return
          */
         private int getRealCount(){
-            return  mDatas==null ? 0:mDatas.size();
+            return mDatas==null ? 0:mDatas.size();
         }
 
         /**
@@ -619,8 +621,9 @@ public class MZBannerView<T> extends RelativeLayout {
             View view;
             boolean isCache = false;
             if(mCacheViews != null && mCacheViews.size() > realPosition
-                    && mCacheViews.get(realPosition).getTag() != null
-                    && !mCacheViews.get(realPosition).getTag().equals("tmp")) {
+                    && (mCacheViews.get(realPosition).getTag() == null
+                    || (mCacheViews.get(realPosition).getTag() != null
+                    && !mCacheViews.get(realPosition).getTag().equals("tmp")))) {
                 view = mCacheViews.get(realPosition);
                 isCache = true;
             } else {
