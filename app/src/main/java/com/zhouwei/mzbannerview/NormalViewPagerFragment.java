@@ -67,7 +67,7 @@ public class NormalViewPagerFragment extends Fragment {
         private TextView mTitle;
         private TextView mDesc;
         @Override
-        public View createView(Context context) {
+        public View createView(Context context, int position) {
             View view = LayoutInflater.from(context).inflate(R.layout.normal_banner_item,null);
             mImageView = (ImageView) view.findViewById(R.id.normal_banner_image);
             mDesc = (TextView) view.findViewById(R.id.page_desc);

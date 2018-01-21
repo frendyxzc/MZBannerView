@@ -13,7 +13,7 @@ public interface MZViewHolder<T> {
      * @param context
      * @return
      */
-    View createView(Context context);
+    View createView(Context context, int position);
 
     /**
      * 绑定数据

@@ -496,7 +496,6 @@ public class MZBannerView<T> extends RelativeLayout {
         private boolean canLoop;
         private BannerPageClickListener mPageClickListener;
         private final int mLooperCountFactor = 500;
-        private ArrayList<View> mCacheViews = null;
 
         public MZPagerAdapter(List<T> datas, MZHolderCreator MZHolderCreator,boolean canLoop) {
             if(mDatas == null){
@@ -561,16 +560,13 @@ public class MZBannerView<T> extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = getView(position,container);
-            if(view.getParent() == container) {
-                container.removeView(view);
-            }
             container.addView(view);
             return view;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-//            container.removeView((View) object);
+            container.removeView((View) object);
         }
 
         @Override
@@ -618,29 +614,10 @@ public class MZBannerView<T> extends RelativeLayout {
                 throw new RuntimeException("can not return a null holder");
             }
             // create View
-            View view;
-            boolean isCache = false;
-            if(mCacheViews != null && mCacheViews.size() > realPosition
-                    && (mCacheViews.get(realPosition).getTag() == null
-                    || (mCacheViews.get(realPosition).getTag() != null
-                    && !mCacheViews.get(realPosition).getTag().equals("tmp")))) {
-                view = mCacheViews.get(realPosition);
-                isCache = true;
-            } else {
-                if(mCacheViews == null) {
-                    mCacheViews = new ArrayList<>();
-                    View tmp = new View(container.getContext());
-                    tmp.setTag("tmp");
-                    for(int i=0; i<getRealCount(); i++) mCacheViews.add(tmp);
-                }
-                view = holder.createView(container.getContext());
-                if(mCacheViews.size() > realPosition) {
-                    mCacheViews.set(realPosition, view);
-                }
-            }
+            View view = holder.createView(container.getContext(), realPosition);
 
-            if(mDatas!=null && mDatas.size() > 0 && !isCache){
-                holder.onBind(container.getContext(),realPosition,mDatas.get(realPosition));
+            if(mDatas!=null && mDatas.size() > 0){
+                holder.onBind(container.getContext(), realPosition, mDatas.get(realPosition));
             }
 
             // 添加点击事件

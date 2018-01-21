@@ -114,7 +114,7 @@ public class RemoteTestFragment extends Fragment implements View.OnClickListener
     public static class BannerViewHolder implements MZViewHolder<Movie>{
         private ImageView mImageView;
         @Override
-        public View createView(Context context) {
+        public View createView(Context context, int position) {
             View view = LayoutInflater.from(context).inflate(R.layout.remote_banner_item,null);
             mImageView = (ImageView) view.findViewById(R.id.remote_item_image);
             return view;

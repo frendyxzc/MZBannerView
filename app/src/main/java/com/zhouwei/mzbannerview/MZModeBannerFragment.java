@@ -91,7 +91,7 @@ public class MZModeBannerFragment extends Fragment{
     public static class BannerViewHolder implements MZViewHolder<Integer> {
         private ImageView mImageView;
         @Override
-        public View createView(Context context) {
+        public View createView(Context context, int position) {
             // 返回页面布局文件
             View view = LayoutInflater.from(context).inflate(R.layout.banner_item,null);
             mImageView = (ImageView) view.findViewById(R.id.banner_image);
